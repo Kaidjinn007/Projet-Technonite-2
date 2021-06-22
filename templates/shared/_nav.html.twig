@@ -21,15 +21,18 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Billetterie</a>
             </li>
+              {% if not is_granted ("ROLE_USER") %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_register') }}">Enregistrement</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+              {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+              <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_logout') }}">Déonnexion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_verify_email') }}">Enregistrement</a>
-            </li>
+              {% endif %}
       </ul>
     </div>
   </div>
