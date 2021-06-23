@@ -56,6 +56,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+            
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -63,11 +64,16 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-        }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+            }
+            if ($this->getUser()) {
+                return $this->redirectToRoute('techno_home');
+            }
+
+            return $this->render('registration/register.html.twig', [
+                 'registrationForm' => $form->createView(),
+                 
+            ]);
     }
 
     /**
