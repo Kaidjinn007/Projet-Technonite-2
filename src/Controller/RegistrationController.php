@@ -64,15 +64,17 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-        }
-        if ($this->getUser()) {
-            return $this->redirectToRoute('techno_home');
-        }
+            
+            }
+            if ($this->getUser()) {
+                return $this->redirectToRoute('techno_home');
+            }
+            else
+
             return $this->render('registration/register.html.twig', [
                  'registrationForm' => $form->createView(),
                  
             ]);
-        
     }
 
     /**
